@@ -3,17 +3,23 @@ from subprocess import run
 from os import path, environ, chdir, getcwd, chmod
 from sys import exit
 
+def require_env(name: str) -> str:
+  value = environ.get(name)
+  if value: return value
+  print(f'::error::Missing mandatory environment variable {name}')
+  exit(1)
+
 def run_git(*args: str):
   command = ['git', *args]
   print('🙮', command)
   status = run(command).returncode
   if status != 0: exit(status)
 
-release_tag = environ['RELEASE_TAG']
-commit_author_name = environ['COMMIT_AUTHOR_NAME']
-commit_author_email = environ['COMMIT_AUTHOR_EMAIL']
-auth_username = environ['AUTH_USERNAME']
-auth_password = environ['AUTH_PASSWORD']
+release_tag = require_env('RELEASE_TAG')
+commit_author_name = require_env('COMMIT_AUTHOR_NAME')
+commit_author_email = require_env('COMMIT_AUTHOR_EMAIL')
+auth_username = require_env('AUTH_USERNAME')
+auth_password = require_env('AUTH_PASSWORD')
 url = f'https://github.com/pacman-repo-builder/pacman-repo-builder/releases/download/{release_tag}/build-pacman-repo-x86_64-unknown-linux-gnu'
 print('🛈 Release Tag:', release_tag)
 print('🛈 Binary URL:', url)
