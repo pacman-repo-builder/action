@@ -26,17 +26,15 @@ if re.match(r'^[0-9]+\.[0-9]+\.[0-9]+-.+$', release_tag):
   print('::set-output name=is_release::true')
   print('::set-output name=is_prerelease::true')
   print(f'::set-output name=release_tag::{release_tag}')
-  exit(0)
 
-if re.match(r'^[0-9]+\.[0-9]+\.[0-9]+$', release_tag):
+elif re.match(r'^[0-9]+\.[0-9]+\.[0-9]+$', release_tag):
   print('::set-output name=release_type::official')
   print('::set-output name=is_release::true')
   print('::set-output name=is_prerelease::false')
   print(f'::set-output name=release_tag::{release_tag}')
-  exit(0)
 
-print('::set-output name=release_type::none')
-print('::set-output name=is_release::false')
-print('::set-output name=is_prerelease::false')
-print(f'::set-output name=release_tag::{release_tag}')
-exit(0)
+else:
+  print('::set-output name=release_type::none')
+  print('::set-output name=is_release::false')
+  print('::set-output name=is_prerelease::false')
+  print(f'::set-output name=release_tag::{release_tag}')
