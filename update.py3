@@ -10,6 +10,8 @@ def run_git(*args):
   if status != 0: exit(status)
 
 release_tag = environ['RELEASE_TAG']
+commit_author_name = environ['COMMIT_AUTHOR_NAME']
+commit_author_email = environ['COMMIT_AUTHOR_EMAIL']
 auth_username = environ['AUTH_USERNAME']
 auth_password = environ['AUTH_PASSWORD']
 url = f'https://github.com/pacman-repo-builder/pacman-repo-builder/releases/download/{release_tag}/build-pacman-repo-x86_64-unknown-linux-gnu'
@@ -40,6 +42,8 @@ chmod('auth-prog.tmp', 0o777)
 run_git('config', 'credential.helper', path.join(work_dir, 'auth-prog.tmp'))
 
 print('Updating git repo...')
+run_git('config', 'user.name', commit_author_name)
+run_git('config', 'user.email', commit_author_email)
 run_git('add', '-v', 'Dockerfile')
 run_git('commit', '-m', release_tag)
 run_git('tag', release_tag)
