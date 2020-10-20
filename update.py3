@@ -6,7 +6,7 @@ from sys import exit
 def require_env(name: str) -> str:
   value = environ.get(name)
   if value: return value
-  print(f'::error::Missing mandatory environment variable {name}')
+  print(f'::error ::Missing mandatory environment variable {name}')
   exit(1)
 
 def run_git(*args: str):

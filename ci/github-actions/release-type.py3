@@ -5,7 +5,7 @@ import re
 release_tag = environ.get('RELEASE_TAG', None)
 
 if not release_tag:
-  print('::error ::Environment variable RELEASE_TAG is required but missing')
+  print('::error ::Missing mandatory environment variable RELEASE_TAG')
   exit(1)
 
 tag_prefix = 'refs/tags/'
