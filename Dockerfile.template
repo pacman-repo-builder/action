@@ -1,0 +1,14 @@
+from archlinux/base
+
+run pacman -Syu --noconfirm
+run pacman -S --noconfirm --needed --overwrite '*' base base-devel bash
+
+add <BINARY_URL> /usr/local/bin/build-pacman-repo
+run chmod +x /usr/local/bin/build-pacman-repo
+
+# force makepkg to allow running as root
+run build-pacman-repo patch-makepkg --replace
+
+copy run.bash /run.bash
+
+entrypoint ["/run.bash"]
