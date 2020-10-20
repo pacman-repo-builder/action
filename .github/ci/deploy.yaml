@@ -1,0 +1,43 @@
+name: Deployment
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  create_release:
+    name: Create Release
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      release_type: ${{ steps.release_type.outputs.release_type }}
+      is_release: ${{ steps.release_type.outputs.is_release }}
+      is_prerelease: ${{ steps.release_type.outputs.is_prerelease }}
+      release_tag: ${{ steps.release_type.outputs.release_tag }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install some APT packages
+        run: sudo apt install -y python3
+
+      - name: Determine release type
+        id: release_type
+        run: ./ci/github-actions/release-type.py3
+        env:
+          RELEASE_TAG: ${{ github.ref }}
+
+      - name: Create Release
+        id: create_release
+        if: steps.release_type.outputs.is_release == 'true'
+        uses: actions/create-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.release_type.outputs.release_tag }}
+          release_name: ${{ steps.release_type.outputs.release_tag }}
+          draft: 'false'
+          prerelease: ${{ steps.release_type.outputs.is_prerelease }}
