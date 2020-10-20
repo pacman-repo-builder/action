@@ -3,7 +3,7 @@ from subprocess import run
 from os import path, environ, chdir, getcwd, chmod
 from sys import exit
 
-def run_git(*args):
+def run_git(*args: str):
   command = ['git', *args]
   print('🙮', command)
   status = run(command).returncode
