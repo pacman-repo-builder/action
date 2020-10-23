@@ -32,6 +32,7 @@ jobs:
 ```
 
 _Note:_ Replace `<TAG>` in the above code snippet with a tag of this repository.
+_Note:_ Make sure that a [manifest file](https://github.com/pacman-repo-builder/pacman-repo-builder#manifest-file) exists before running `build`.
 
 ## Issues and Pull Requests
 
