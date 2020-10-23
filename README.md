@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: pacman-repo-builder/action@<TAG>
         with:
-          command: build-pacman-repo build --syncdeps --deref-db
+          command: build-pacman-repo build
 ```
 
 _Note:_ Replace `<TAG>` in the above code snippet with a tag of this repository.
