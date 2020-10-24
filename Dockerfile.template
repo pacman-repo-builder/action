@@ -1,7 +1,9 @@
 from archlinux/base
 
 run pacman -Syu --noconfirm
-run pacman -S --noconfirm --needed --overwrite '*' base base-devel bash git
+run pacman -S --noconfirm --needed --overwrite '*' bash
+copy init-image.bash /init-image.bash
+run /init-image.bash
 
 add <BINARY_URL> /usr/local/bin/build-pacman-repo
 run chmod +x /usr/local/bin/build-pacman-repo
