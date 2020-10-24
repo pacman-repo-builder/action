@@ -1,4 +1,8 @@
 #! /bin/bash
+
+# Q: Why not just use Dockerfile itself?
+# A: Dockerfile does not support variables, control flows, and programming in general
+
 set -o errexit -o pipefail -o nounset
 
 packages=(
