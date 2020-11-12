@@ -2,6 +2,7 @@ from archlinux/base
 
 run pacman -Syu --noconfirm
 run pacman -S --noconfirm --needed --overwrite '*' bash
+run pacman -Fy --noconfirm
 copy init-image.bash /init-image.bash
 run /init-image.bash
 
