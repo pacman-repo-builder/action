@@ -1,9 +1,6 @@
 from archlinux:base-devel
 
 copy pacman.conf /etc/pacman.conf
-run pacman -Syu --noconfirm
-run pacman -S --noconfirm --needed --overwrite '*' bash
-run pacman -Fy --noconfirm
 copy init-image.bash /init-image.bash
 run /init-image.bash
 

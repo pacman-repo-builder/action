@@ -5,6 +5,9 @@
 
 set -o errexit -o pipefail -o nounset
 
+pacman -Syu --noconfirm
+pacman -Fy --noconfirm
+
 packages=(
   base
   base-devel # makepkg depends on this
