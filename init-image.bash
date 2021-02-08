@@ -5,13 +5,12 @@
 
 set -o errexit -o pipefail -o nounset
 
-pacman -Syu --noconfirm
-pacman -Fy --noconfirm
-
 packages=(
   base
   base-devel # makepkg depends on this
   bash       # obviously already installed, but still here for completeness sake
   git        # some sources are git urls
 )
-pacman -S --noconfirm --needed --overwrite '*' "${packages[@]}"
+
+pacman -Syu --noconfirm --needed --overwrite '*' "${packages[@]}"
+pacman -Fy --noconfirm
