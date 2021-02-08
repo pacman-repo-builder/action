@@ -13,4 +13,3 @@ packages=(
 )
 
 pacman -Syu --noconfirm --needed --overwrite '*' "${packages[@]}"
-pacman -Fy --noconfirm
