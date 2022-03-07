@@ -19,7 +19,7 @@ jobs:
       release_tag: ${{ steps.release_type.outputs.release_tag }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install some APT packages
         run: sudo apt install -y python3
