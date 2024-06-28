@@ -13,4 +13,5 @@ packages=(
   archlinux-keyring # avoid failures due to outdated keys
 )
 
-pacman -Syu --noconfirm --needed --overwrite '*' "${packages[@]}"
+pacman -Sy --noconfirm --needed
+pacman -S --noconfirm --needed --overwrite '*' "${packages[@]}"
