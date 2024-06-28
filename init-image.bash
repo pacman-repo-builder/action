@@ -13,4 +13,6 @@ packages=(
   archlinux-keyring # avoid failures due to outdated keys
 )
 
+pacman -R --noconfirm systemd-sysvcompat
+
 pacman -Syu --noconfirm --needed --overwrite '*' "${packages[@]}"
